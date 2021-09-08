@@ -1,4 +1,4 @@
-package chernetskiy.oleg.notesapp.ui;
+package chernetskiy.oleg.notesapp.ui.list;
 
 import java.util.List;
 
