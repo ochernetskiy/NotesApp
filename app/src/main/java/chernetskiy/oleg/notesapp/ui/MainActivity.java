@@ -1,8 +1,10 @@
-package chernetskiy.oleg.notesapp;
+package chernetskiy.oleg.notesapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import chernetskiy.oleg.notesapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
