@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">NotesApp</string>
+    <string name="note_1">First Note</string>
+    <string name="note_1_dsc">Description of the first note</string>
+    <string name="note_1_date">08.09.2021</string>
+    <string name="note_2">Second Note</string>
+    <string name="note_2_dsc">Description of the second note</string>
+    <string name="note_2_date">09.09.2021</string>
+    <string name="note_3">Third Note</string>
+    <string name="note_3_dsc">Description of the third note</string>
+    <string name="note_3_date">10.09.2021</string>
+    <string name="note_4">Fourth Note</string>
+    <string name="note_4_dsc">Description of the fourth note</string>
+    <string name="note_4_date">11.09.2021</string>
+    <string name="note_5">Fifth Note</string>
+    <string name="note_5_dsc">Description of the fifth note</string>
+    <string name="note_5_date">12.09.2021</string>
+    <string name="note_6">Sixth Note</string>
+    <string name="note_6_dsc">Description of the sixth note</string>
+    <string name="note_6_date">13.09.2021</string>
 </resources>
