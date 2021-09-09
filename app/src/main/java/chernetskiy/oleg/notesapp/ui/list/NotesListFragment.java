@@ -1,13 +1,12 @@
 package chernetskiy.oleg.notesapp.ui.list;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,19 +21,37 @@ import chernetskiy.oleg.notesapp.ui.details.NoteDetailsActivity;
 
 public class NotesListFragment extends Fragment implements NotesListView {
 
-    private NotesListPresenter presenter;
 
+    public static final String KEY_SELECTED_NOTE = "KEY_SELECTED_NOTE";
+    public static final String ARG_NOTE = "ARG_NOTE";
+    private OnNoteClicked OnNoteClicked;
+    private NotesListPresenter presenter;
     private LinearLayout container;
+
+    public NotesListFragment() {
+        super(R.layout.fragment_notes_list);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof OnNoteClicked) {
+            OnNoteClicked = (OnNoteClicked) context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        OnNoteClicked = null;
+        super.onDetach();
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         presenter = new NotesListPresenter(this, new DeviceNotesRepository());
-    }
-
-    public NotesListFragment() {
-        super(R.layout.fragment_notes_list);
     }
 
     @Override
@@ -51,7 +68,7 @@ public class NotesListFragment extends Fragment implements NotesListView {
     @Override
     public void showNotes(List<Note> notes) {
 
-        for (Note note: notes) {
+        for (Note note : notes) {
 
             View noteItem = LayoutInflater.from(requireContext()).inflate(R.layout.item_note, container, false);
 
@@ -59,9 +76,14 @@ public class NotesListFragment extends Fragment implements NotesListView {
             noteItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(requireContext(), NoteDetailsActivity.class);
-                    intent.putExtra(NoteDetailsActivity.ARG_NOTE, note);
-                    startActivity(intent);
+                    if (OnNoteClicked != null) {
+                        OnNoteClicked.onNoteOnClicked(note);
+                    }
+
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(ARG_NOTE, note);
+
+                    getParentFragmentManager().setFragmentResult(KEY_SELECTED_NOTE, bundle);
                 }
             });
 
@@ -73,5 +95,9 @@ public class NotesListFragment extends Fragment implements NotesListView {
 
         }
 
+    }
+
+    public interface OnNoteClicked {
+        void onNoteOnClicked(Note note);
     }
 }

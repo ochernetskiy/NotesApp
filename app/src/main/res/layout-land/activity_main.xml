@@ -19,15 +19,13 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/details_container"
-        android:name="chernetskiy.oleg.notesapp.ui.list.NotesListFragment"
+        android:name="chernetskiy.oleg.notesapp.ui.details.NoteDetailsFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/container"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@color/purple_200"
-        tools:context=".ui.MainActivity"
-        tools:ignore="MissingConstraints" />
+        tools:background="@color/purple_200" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
